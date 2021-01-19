@@ -1,11 +1,11 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
+def compose_version = "+"
+def kotlin_version = "1.4.21"
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "me.nice.jetnews"
@@ -23,27 +23,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
         useIR = true
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
+        kotlinCompilerVersion kotlin_version
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.10'
     }
+
+    packagingOptions {
+        excludes += "/META-INF/AL2.0"
+        excludes += "/META-INF/LGPL2.1"
+    }
+
 }
 
 dependencies {
+
     implementation(fileTree("libs"))
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
+    implementation 'androidx.core:core-ktx:1.3.2'
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.foundation:foundation-layout:$compose_version"
@@ -52,12 +63,11 @@ dependencies {
     implementation "androidx.compose.foundation:foundation:$compose_version"
     implementation "androidx.compose.animation:animation:$compose_version"
     implementation "androidx.ui:ui-tooling:$compose_version"
-    implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
-    implementation 'androidx.activity:activity-ktx:1.1.0'
-    implementation 'androidx.core:core-ktx:1.5.0-alpha02'
-
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha07'
-    testImplementation 'junit:junit:4.13'
+    implementation 'androidx.appcompat:appcompat:1.3.0-beta01'
+    implementation 'androidx.activity:activity-ktx:1.2.0-rc01'
+    implementation 'androidx.core:core-ktx:1.5.0-beta01'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-rc01'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

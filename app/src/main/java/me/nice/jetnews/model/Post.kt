@@ -1,6 +1,6 @@
 package me.nice.jetnews.model
 
-import androidx.compose.ui.graphics.ImageAsset
+import androidx.compose.ui.graphics.ImageBitmap
 
 data class Post(
         val id: String,
@@ -8,12 +8,12 @@ data class Post(
         val subtitle: String,
         val url: String,
         val publication: Publication,
-        val metaData: MetaData,
+          val metaData: MetaData,
         val paragraphs: List<Paragraph> = emptyList(),
         val imageId: Int,
         val imageThumbId: Int,
-        val image: ImageAsset? = null,
-        val imageThumb: ImageAsset? = null
+        val image: ImageBitmap? = null,
+        val imageThumb: ImageBitmap? = null
 )
 
 data class MetaData(

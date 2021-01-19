@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
@@ -91,12 +91,12 @@ fun AppDrawer(navigateTo: (Screen) -> Unit,
 private fun JetNewsLogo(modifier: Modifier = Modifier) {
     Row(modifier = modifier) {
         Image(
-            asset = vectorResource(id = R.drawable.ic_jetnews_logo),
+            imageVector = vectorResource(id = R.drawable.ic_jetnews_logo),
             colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
         )
         Spacer(Modifier.preferredHeight(8.dp))
         Image(
-            asset = vectorResource(id = R.drawable.ic_jetnews_wordmark),
+            imageVector = vectorResource(id = R.drawable.ic_jetnews_wordmark),
             colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface)
         )
     }
@@ -104,7 +104,7 @@ private fun JetNewsLogo(modifier: Modifier = Modifier) {
 
 @Composable
 private fun DrawerButton(
-    icon: VectorAsset,
+    icon: ImageVector,
     label: String,
     isSelected: Boolean,
     action: () -> Unit,
@@ -130,15 +130,16 @@ private fun DrawerButton(
 
     val surfaceModifier = modifier.padding(start = 8.dp, top = 8.dp, end = 8.dp)
             .fillMaxWidth()
+
     Surface(modifier = surfaceModifier,
             color = backgroundColor,
             shape = MaterialTheme.shapes.small) {
         TextButton(onClick = action, modifier = Modifier.fillMaxWidth()) {
             Row(horizontalArrangement = Arrangement.Start,
-            verticalGravity = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()) {
                 Image(
-                        asset = icon,
+                        imageVector = icon,
                         colorFilter = ColorFilter.tint(textIconColor),
                         alpha = imageAlpha
                 )
@@ -152,17 +153,15 @@ private fun DrawerButton(
 
 
 
-//@Preview("Drawer contents")
-//@Composable
-//fun PreviewJetNewsApp() {
-//    ThemedPreview(darkTheme = false) {
-//        AppDrawer(navigateTo = {},
-//                currentScreen = Screen.Home,
-//                closeDrawer = {})
-//    }
-//}
-
-
+@Preview("Drawer contents")
+@Composable
+fun PreviewJetNewsApp() {
+    ThemedPreview(darkTheme = false) {
+        AppDrawer(navigateTo = {},
+                currentScreen = Screen.Home,
+                closeDrawer = {})
+    }
+}
 
 @Preview("Drawer contents")
 @Composable

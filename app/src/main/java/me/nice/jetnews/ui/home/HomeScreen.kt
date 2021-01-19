@@ -10,7 +10,7 @@ import me.nice.jetnews.data.posts.PostsRepository
 import me.nice.jetnews.model.Post
 import me.nice.jetnews.ui.Screen
 import me.nice.jetnews.ui.state.UiState
-import me.nice.jetnews.util.launchUiStateProducer
+//import me.nice.jetnews.util.launchUiStateProducer
 
 
 @Composable
@@ -18,9 +18,9 @@ fun HomeScreen(
     navigateTo: (Screen) -> Unit,
     postsRepository: PostsRepository, scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    val (postUiState, refreshPost, clearError) = launchUiStateProducer(postsRepository) {
-        getPosts()
-    }
+//    val (postUiState, refreshPost, clearError) = launchUiStateProducer(postsRepository) {
+//        getPosts()
+//    }
 
 //    val favorites by postsRepository.observeFavorites().collectAsState(setOf())
 
